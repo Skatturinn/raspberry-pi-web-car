@@ -1,0 +1,26 @@
+{
+  "name": "raspberry-pi-web-car",
+  "version": "1.0.0",
+  "description": "Web interface control of raspberry",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skatturinn/raspberry-pi-web-car.git"
+  },
+  "author": "elias",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Skatturinn/raspberry-pi-web-car/issues"
+  },
+  "homepage": "https://github.com/Skatturinn/raspberry-pi-web-car#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "passport": "^0.7.0",
+    "path": "^0.12.7",
+    "url": "^0.11.3"
+  }
+}
