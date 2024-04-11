@@ -48,18 +48,34 @@ app.use(
 /** Gerum router hér */
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', (req, res) => { // Nærð í síðu
         const title = 'Forsíða';
     res.status(200).render('index', {title});
 
 });
-router.post('/', (req, res) => {
-        console.log('test')
-        res.status(200).json('test')
-});
-router.post('/takki', (req, res) => {
+router.post('/takki', (req, res) => { // sendir boð
+	/**
+	 * @param {string | undefined} til
+	 * @param {undefined | string} ekki
+	 * @returns {boolean}
+	 */
+	function check(til,ekki) {
+		return req.body.hasOwnProperty(til) && !req.body.hasOwnProperty(ekki)
+	}
 		// TODO gera viðbrögð fyrir takka w,a,s,d
         // console.log(req.body.w,req.body.a,req.body.d,req.body.s);
+		if (check('w','s')) {
+			// Snúa motor áfram
+		} 
+		if (check('s','w')) {
+			// Snúa motor afturábak
+		}
+		if (check('a','d')) {
+			// beygja til vinstri
+		}
+		if (check('d','a')) {
+			// beygja til hægri
+		}
 		console.log(req.body)
         res.status(200).json();
 });
