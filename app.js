@@ -59,7 +59,7 @@ router.post('/', (req, res) => {
         res.status(200).json('test')
 });
 router.post('/afram', (req, res) => {
-        console.log('post/afram',req?.body);
+        console.log('post/afram',req.body);
         res.status(200).json();
 });
 
@@ -74,7 +74,7 @@ app.use((err,req,res,next) => {
 });
 
 app.listen(port, () => {
-		const networkInfo = os.networkInterfaces()?.wlan0 || os.networkInterfaces()?.eth0 || os.networkInterfaces()?.WiFi // athugar fyrir linux og windows
+		const networkInfo = os.networkInterfaces().wlan0 || os.networkInterfaces().eth0 || os.networkInterfaces().WiFi // athugar fyrir linux og windows
         console.info(`Server running at ${networkInfo ? 
 			(
 				Number.parseFloat(networkInfo[0].address) && networkInfo[0].address 
