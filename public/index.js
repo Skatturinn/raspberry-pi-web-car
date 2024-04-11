@@ -33,7 +33,7 @@ function keyvent(keys) {
 }
 /**
  * Gerir HTML takka að takka á lyklaborði
- * @param {HTMLElement | null} element
+ * @param {Element} element
  * @param {"up" | "down" | string} upOrDown 
  * @param {{ key: string, keyCode: number, code: string, which: number }} key 
  */
@@ -63,9 +63,16 @@ const keyObjects = keys.map(key => {
 document.addEventListener('DOMContentLoaded', // Bíðum eftir að síða hefur hlaðið efni
 () => {
 	keys.forEach(
-		(stak, nr) => ['up','down'].forEach(ud => 
-			eventreplication(document.querySelector(`.${stak}`), ud, keyObjects[nr])
-		) 
+		(stak, nr) => {
+			const takki = document.querySelector(`.${stak}`) || false;
+			['up','down'].forEach(mouse => {
+			takki && eventreplication(takki, mouse, keyObjects[nr]);
+			takki && takki.addEventListener(`touch${mouse === 'up' ? 'end' : 'start'}`, // gerir snertingu á takka á skjá að lykil á lyklaborði
+			() => document.dispatchEvent(
+				new KeyboardEvent(`key${mouse}`,keyObjects[nr])
+			))
+		})
+		}
 	)
 })
 
