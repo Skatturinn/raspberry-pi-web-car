@@ -4,6 +4,7 @@ const express = require('express');
 const { dirname, join } = require('path');
 const { fileURLToPath } = require('url');
 const session = require('express-session');
+const bodyParse = require('body-parser')
 
 require('dotenv').config() // dotenv v10 uppsetning á process.env
 
@@ -24,6 +25,8 @@ require('dotenv').config()
 console.log(process.env)
 const app = express();
 
+app.use(express.json())
+app.use(express.static('./public')) // gefur okkur aðgang að js og css fyrir síðu
 app.set('views', './views'); // ./views inniheldur ejs skrár fyrir byrtingu
 app.set('view engine', 'ejs'); // ejs útfærlsa á html
 
@@ -56,8 +59,8 @@ router.post('/', (req, res) => {
         res.status(200).json('test')
 });
 router.post('/afram', (req, res) => {
-        console.log(JSON.stringify(req.body));
-        res.status(200).json(req.body);
+        console.log('post/afram',req?.body);
+        res.status(200).json();
 });
 
 
@@ -71,7 +74,13 @@ app.use((err,req,res,next) => {
 });
 
 app.listen(port, () => {
-        console.info(`Server running at ${os.networkInterfaces().wlan0[0].address}:${port}`);
+		const networkInfo = os.networkInterfaces()?.wlan0 || os.networkInterfaces()?.eth0 || os.networkInterfaces()?.WiFi // athugar fyrir linux og windows
+        console.info(`Server running at ${networkInfo ? 
+			(
+				Number.parseFloat(networkInfo[0].address) && networkInfo[0].address 
+				|| Number.parseFloat(networkInfo[1].address) && networkInfo[1].address // skilar ip tölu af tölvu
+			) 
+			: 'https://localhost' }:${port}`);
 });
 
 
