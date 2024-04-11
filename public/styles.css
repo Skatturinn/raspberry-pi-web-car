@@ -46,13 +46,18 @@
 	height: 80vh;
   }
   .btn {
-	font-size: larger;
+	font-family: inherit;
+	font-size: 5em;
 	background: none;
 	border: 1px solid black;
 	border-radius: 1em;
   }
-  .btn:active {
+  .btn:active,
+  .btn:focus{
+	font-family: inherit;
+	font-size: 5em;
 	font-weight: 700;
+	border-radius: 1em;
 	font-size: larger;
 	background-color: rgba(0,0,0,0.5);;
   }
