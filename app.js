@@ -22,7 +22,6 @@ if (!connectionString || !sessionSecret) {
 }
 
 require('dotenv').config()
-console.log(process.env)
 const app = express();
 
 app.use(express.json())
@@ -58,8 +57,10 @@ router.post('/', (req, res) => {
         console.log('test')
         res.status(200).json('test')
 });
-router.post('/afram', (req, res) => {
-        console.log('post/afram',req.body);
+router.post('/takki', (req, res) => {
+		// TODO gera viðbrögð fyrir takka w,a,s,d
+        // console.log(req.body.w,req.body.a,req.body.d,req.body.s);
+		console.log(req.body)
         res.status(200).json();
 });
 
@@ -82,8 +83,3 @@ app.listen(port, () => {
 			) 
 			: 'https://localhost' }:${port}`);
 });
-
-
-console.log('test')
-
-
