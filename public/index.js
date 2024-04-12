@@ -74,6 +74,14 @@ document.addEventListener('DOMContentLoaded', // Bíðum eftir að síða hefur 
 		})
 		}
 	)
+	const control = document.querySelector('.control')
+	control && control.addEventListener('click', () => 
+	{
+		const btngrid = document.querySelector('.btn-grid');
+		btngrid && btngrid.classList.toggle('off')
+	}
+
+)
 })
 
 keyvent(keys)// búum til events fyrir takka
