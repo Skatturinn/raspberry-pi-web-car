@@ -52,8 +52,8 @@
 	border: 1px solid black;
 	border-radius: 1em;
   }
-  .btn:active,
-  .btn:focus{
+  .btn:active
+  {
 	font-family: inherit;
 	font-size: 5em;
 	font-weight: 700;
