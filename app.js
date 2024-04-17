@@ -59,21 +59,25 @@ router.post('/takki', (req, res) => { // sendir boð
 	 * @param {undefined | string} ekki
 	 * @returns {boolean}
 	 */
+	const {w, a, s ,d } = req.body
+	// console.log(w,a,s,d)
 	function check(til,ekki) {
-		return req.body.hasOwnProperty(til) && !req.body.hasOwnProperty(ekki)
+		return typeof til !== 'undefined' && typeof ekki === 'undefined'
 	}
 		// TODO gera viðbrögð fyrir takka w,a,s,d
         // console.log(req.body.w,req.body.a,req.body.d,req.body.s);
-		if (check('w','s')) {
+		// Servo motor for propulsion
+		if (check(w,s)) {
 			// Snúa motor áfram
 		} 
-		if (check('s','w')) {
+		if (check(s,w)) {
 			// Snúa motor afturábak
 		}
-		if (check('a','d')) {
+		// Stepper motor for turning
+		if (check(a,d)) {
 			// beygja til vinstri
 		}
-		if (check('d','a')) {
+		if (check(d,a)) {
 			// beygja til hægri
 		}
 		console.log(req.body)
