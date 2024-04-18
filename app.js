@@ -91,8 +91,8 @@ const test = async () => {
 
 const test2 = async (hz) => {
 	await GPIO.destroy()
-	const on = 1000/hz;
-	const off = 1000 - on;
+	const on = 20/hz;
+	const off = 20 - on;
 
 	let i = 1;
 		await GPIO.setup(servoPin, GPIO.DIR_OUT).catch(err => console.error(err))
@@ -108,7 +108,7 @@ const test2 = async (hz) => {
 		}
 }
 
-test2()
+test2(20)
 
 
 // test()
