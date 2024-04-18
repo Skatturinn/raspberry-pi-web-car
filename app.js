@@ -112,12 +112,12 @@ const test2 = async (hz) => {
 // test2(10)
 
 const test3 = async () => {
-	const motor = new pigpio(22,  {mode: pigpio.OUTPUT});
+	const motor = new pigpio(25,  {mode: pigpio.OUTPUT});
 	let pulseWidth = 1000;
 let increment = 100;
 	setInterval(() => {
 		motor.servoWrite(pulseWidth);
-	  
+		console.log(increment);
 		pulseWidth += increment;
 		if (pulseWidth >= 2000) {
 		  increment = -100;
