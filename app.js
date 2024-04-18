@@ -65,25 +65,20 @@ const step_sequence = [[1,0,0,1],
 //             cleanup()
 //             exit( 1 )
 //         time.sleep( step_sleep )
-
-const test = () => {
-	GPIO.setup(7, GPIO.DIR_OUT).then(
-            () => 
-	GPIO.write(7,true))
-
-            .catch((err)=> console.log(err.toString()));
-    GPIO.setup(11, GPIO.DIR_OUT).then(
-            () => 
-            GPIO.write(11,true))
-        GPIO.setup(13, GPIO.DIR_OUT).then(
-                () => 
-                GPIO.write(13, true))
-        GPIO.setup(15, GPIO.DIR_OUT).then(
-                () =>
-                GPIO.write(15, true))
-
-	console.log('test')
-
+const stepperPins = [7,11,13,15]
+const test = async () => {
+	let n = 0;
+	for (const pin of stepperPins) {
+		await GPIO.setup(pin, GPIO.DIR_OUT)
+	}
+	while (n < 8) {
+		for (const pin of stepperPins) {
+			await GPIO.write(pin, !!step_sequence[n][pin])
+		}
+		console.log(n)
+		n++
+	}
+	console.log('test end')
 }
 
 test()
