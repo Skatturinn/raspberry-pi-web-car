@@ -92,11 +92,13 @@ const test = async () => {
 
 const testcc = async () => {
 	const servo = new pigpio(7, {mode: pigpio.OUTPUT});
-	while (true) {
+	let i = 1
+	while (i) {
 		servo.servoWrite(500);
-		sleep(1000);
-		servo.servoWrite(2500);
-		sleep(1000);
+		i++;
+		console.log(i);
+		// servo.
+		// servo.servoWrite(2500);
 	}
 }
 
