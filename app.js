@@ -67,6 +67,7 @@ const step_sequence = [[1,0,0,1],
 //         time.sleep( step_sleep )
 const stepperPins = [7,11,13,15]
 const test = async () => {
+	while (true) {
 	let n = 0;
 	for (const pin of stepperPins) {
 		await GPIO.setup(pin, GPIO.DIR_OUT)
@@ -78,9 +79,9 @@ const test = async () => {
 		console.log(n)
 		n++
 	}
-	console.log('test end')
+	console.log('one rotation') }
 }
-
+// while (true) {}
 test()
 require('dotenv').config() // dotenv v10 uppsetning á process.env
 
