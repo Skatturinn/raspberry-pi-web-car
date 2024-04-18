@@ -70,22 +70,20 @@ const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 const stepperPins = [7,11,13,15]
 const test = async () => {
 	let i = 0
-
+	for (const pin of stepperPins) {
+		await GPIO.setup(pin, GPIO.DIR_OUT).catch(err => console.error(err))
+	}
         while (true) {
         let n = 0;
-
-	const promises = [];
-	for (const pin of stepperPins) {
-		await GPIO.setup(pin, GPIO.DIR_OUT)
-	}
+	// const promises = [];
 	while (n < 8) {
 		stepperPins.forEach(async (stak,nr) => 
-		{await GPIO.write(stak, !!step_sequence[n][nr])}
+		{await GPIO.write(stak, !!step_sequence[n][nr]).catch(err => console.log(err))}
 	)
 		console.log(i,n)
 		n++
 	}
-                await sleep(2);
+		await sleep(2);
     i++ }
 }
 
