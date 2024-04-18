@@ -91,18 +91,13 @@ const test = async () => {
 }
 
 const testcc = async () => {
-	let i = 0
-		await GPIO.setup(servoPin, GPIO.DIR_OUT).catch(err => console.error(err))
-        while (true) {
-        let n = 0;
-	// const promises = [];
-	while (n < 8) {
-		await GPIO.write(servoPin, true).catch(err => console.log(err))
-		console.log(i,n)
-		n++
+	const servo = new pigpio(7, {mode: pigpio.OUTPUT});
+	while (true) {
+		servo.servoWrite(500);
+		sleep(1000);
+		servo.servoWrite(2500);
+		sleep(1000);
 	}
-		await sleep(2);
-    i++ }
 }
 
 testcc()
