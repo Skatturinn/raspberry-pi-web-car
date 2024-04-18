@@ -4,7 +4,8 @@ const express = require('express');
 const { dirname, join } = require('path');
 const { fileURLToPath } = require('url');
 const session = require('express-session');
-const bodyParse = require('body-parser')
+const bodyParse = require('body-parser');
+const { error } = require('console');
 // var gpio = require('rpi-gpio');
 const GPIO = require('rpi-gpio').promise;
 /**
@@ -68,18 +69,23 @@ const step_sequence = [[1,0,0,1],
 const stepperPins = [7,11,13,15]
 const test = async () => {
 	let n = 0;
+	const promises = [];
 	for (const pin of stepperPins) {
 		await GPIO.setup(pin, GPIO.DIR_OUT)
 	}
 	while (n < 8) {
-		await stepperPins.forEach(async (stak,nr) => 
+		stepperPins.forEach(async (stak,nr) => 
 		{await GPIO.write(stak, !!step_sequence[n][nr])}
 	)
 		console.log(n)
 		n++
 	}
 }
-// while (true) {}
+while (true) {
+	setTimeout(function(){
+		test().catch((e) => console.log(e))
+	}, 2000);
+}
 test()
 require('dotenv').config() // dotenv v10 uppsetning á process.env
 
