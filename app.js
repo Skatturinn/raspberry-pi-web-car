@@ -8,6 +8,7 @@ const bodyParse = require('body-parser');
 const { error } = require('console');
 // var gpio = require('rpi-gpio');
 const GPIO = require('rpi-gpio').promise;
+const pigpio = require('pigpio').Gpio;
 // GPIO.destroy()
 /**
  * TAKEN FROM RPI-GPIO NODEJS DOCUMENTATION
@@ -108,10 +109,24 @@ const test2 = async (hz) => {
 		}
 }
 
-test2(10)
+// test2(10)
 
-
-
+const test3 = async () => {
+	const motor = new pigpio(22,  {mode: pigpio.OUTPUT});
+	let pulseWidth = 1000;
+let increment = 100;
+	setInterval(() => {
+		motor.servoWrite(pulseWidth);
+	  
+		pulseWidth += increment;
+		if (pulseWidth >= 2000) {
+		  increment = -100;
+		} else if (pulseWidth <= 1000) {
+		  increment = 100;
+		}
+	  }, 1000);
+}
+test3()
 // test()
 require('dotenv').config() // dotenv v10 uppsetning á process.env
 
