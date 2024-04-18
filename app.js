@@ -126,7 +126,33 @@ let increment = 100;
 		}
 	  }, 1000);
 }
-test3()
+// Import the SG90MotorController class from the SG90MotorController.js file
+const { SG90MotorController } = require('./SG90MotorController');
+const RotateServer = {
+    RotateToLeft: 0,
+    RotateToMiddle: 1,
+    RotateToRight: 2
+};
+
+// Create an instance of SG90MotorController, specifying the GPIO pin number
+const motorController = new SG90MotorController(22); // Assuming GPIO pin 5
+
+// Initialize GPIO
+motorController.gpioInit().then(() => {
+    // GPIO initialization complete
+
+    // Rotate the motor to the left
+    motorController.pulseMotor(RotateServer.RotateToLeft);
+
+    // Rotate the motor to the middle
+    motorController.pulseMotor(RotateServer.RotateToMiddle);
+
+    // Rotate the motor to the right
+    motorController.pulseMotor(RotateServer.RotateToRight);
+}).catch((error) => {
+    // GPIO initialization failed
+    console.error("Failed to initialize GPIO:", error);
+});
 // test()
 require('dotenv').config() // dotenv v10 uppsetning á process.env
 
