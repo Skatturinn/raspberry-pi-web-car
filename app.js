@@ -68,6 +68,7 @@ const step_sequence = [[1,0,0,1],
 //         time.sleep( step_sleep )
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 const stepperPins = [7,11,13,15]
+const dcPins = [18,22]
 const test = async () => {
 	let i = 0
 	for (const pin of stepperPins) {
@@ -87,11 +88,27 @@ const test = async () => {
     i++ }
 }
 
+const test2 = async () => {
+	let i = 0
+	for (const pin of dcPins) {
+		await GPIO.setup(pin, GPIO.DIR_OUT).catch(err => console.error(err))
+	}
+	while (i) {
+			await GPIO.write(dcPins[0], true).catch(err => console.error(err))
+			await sleep(500);
+			await GPIO.write(dcPins[0], false).catch(err => console.error(err))
+			await GPIO.write(dcPins[1], true).catch(err => console.error(err))
+			await sleep(500);
+			await GPIO.write(dcPins[1], false).catch(err => console.error(err))
+			console.log(i)
+			i++
+		}
+}
+
+test2()
 
 
-
-
-test()
+// test()
 require('dotenv').config() // dotenv v10 uppsetning á process.env
 
 const {
