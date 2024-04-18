@@ -89,7 +89,7 @@ const test = async () => {
 }
 
 const test2 = async () => {
-	let i = 0
+	let i = 1;
 	for (const pin of dcPins) {
 		await GPIO.setup(pin, GPIO.DIR_OUT).catch(err => console.error(err))
 	}
