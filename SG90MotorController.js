@@ -6,7 +6,7 @@ const RotateServer = {
 };
 
 // Class for controlling an SG90 Motor
-export class SG90MotorController {
+class SG90MotorController {
     constructor(gpioPin = 22) {
         this._gpioPin = gpioPin;
         this._gpioController = null;
@@ -73,3 +73,6 @@ export class SG90MotorController {
         }
     }
 }
+
+module.exports = { SG90MotorController };
+
