@@ -90,6 +90,23 @@ const test = async () => {
     i++ }
 }
 
+const testcc = async () => {
+	let i = 0
+		await GPIO.setup(servoPin, GPIO.DIR_OUT).catch(err => console.error(err))
+        while (true) {
+        let n = 0;
+	// const promises = [];
+	while (n < 8) {
+		await GPIO.write(servoPin, !!step_sequence[n][2]).catch(err => console.log(err))
+		console.log(i,n)
+		n++
+	}
+		await sleep(2);
+    i++ }
+}
+
+testcc()
+
 const test2 = async (hz) => {
 	await GPIO.destroy()
 	const on = 20/hz;
@@ -112,7 +129,7 @@ const test2 = async (hz) => {
 // test2(10)
 
 const test3 = async () => {
-	const motor = new pigpio(25,  {mode: pigpio.OUTPUT});
+	const motor = new pigpio(22,  {mode: pigpio.OUTPUT});
 	let pulseWidth = 1000;
 let increment = 100;
 	setInterval(() => {
@@ -126,33 +143,7 @@ let increment = 100;
 		}
 	  }, 1000);
 }
-// Import the SG90MotorController class from the SG90MotorController.js file
-const { SG90MotorController } = require('./SG90MotorController');
-const RotateServer = {
-    RotateToLeft: 0,
-    RotateToMiddle: 1,
-    RotateToRight: 2
-};
 
-// Create an instance of SG90MotorController, specifying the GPIO pin number
-const motorController = new SG90MotorController(25); // Assuming GPIO pin 5
-
-// Initialize GPIO
-motorController.gpioInit().then(() => {
-    // GPIO initialization complete
-
-    // Rotate the motor to the left
-    motorController.pulseMotor(RotateServer.RotateToLeft);
-
-    // Rotate the motor to the middle
-    motorController.pulseMotor(RotateServer.RotateToMiddle);
-
-    // Rotate the motor to the right
-    motorController.pulseMotor(RotateServer.RotateToRight);
-}).catch((error) => {
-    // GPIO initialization failed
-    console.error("Failed to initialize GPIO:", error);
-});
 // test()
 require('dotenv').config() // dotenv v10 uppsetning á process.env
 
