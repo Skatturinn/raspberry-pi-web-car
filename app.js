@@ -5,7 +5,74 @@ const { dirname, join } = require('path');
 const { fileURLToPath } = require('url');
 const session = require('express-session');
 const bodyParse = require('body-parser')
+// var gpio = require('rpi-gpio');
+const GPIO = require('rpi-gpio');
+/**
+ * TAKEN FROM RPI-GPIO NODEJS DOCUMENTATION
+ * https://www.npmjs.com/package/rpi-gpio?activeTab=code
+ */
+const PINS = {
+        // 1: 3.3v
+        // 2: 5v
+        '3':  2,
+        // 4: 5v
+        '5':  3,
+        // 6: ground
+        '7':  4,
+        '8':  14,
+        // 9: ground
+        '10': 15,
+        '11': 17,
+        '12': 18,
+        '13': 27,
+        // 14: ground
+        '15': 22,
+        '16': 23,
+        // 17: 3.3v
+        '18': 24,
+        '19': 10,
+        // 20: ground
+        '21': 9,
+        '22': 25,
+        '23': 11,
+        '24': 8,
+        // 25: ground
+        '26': 7,
+};
+/**
+ * Taken from 
+ * https://ben.akrin.com/driving-a-28byj-48-stepper-motor-uln2003-driver-with-a-raspberry-pi/
+ */
+const step_sequence = [[1,0,0,1],
+                 [1,0,0,0],
+                 [1,1,0,0],
+                 [0,1,0,0],
+                 [0,1,1,0],
+                 [0,0,1,0],
+                 [0,0,1,1],
+                 [0,0,0,1]]
+// try:
+//     i = 0
+//     for i in range(step_count):
+//         for pin in range(0, len(motor_pins)):
+//             GPIO.output( motor_pins[pin], step_sequence[motor_step_counter][pin] )
+//         if direction==True:
+//             motor_step_counter = (motor_step_counter - 1) % 8
+//         elif direction==False:
+//             motor_step_counter = (motor_step_counter + 1) % 8
+//         else: # defensive programming
+//             print( "uh oh... direction should *always* be either True or False" )
+//             cleanup()
+//             exit( 1 )
+//         time.sleep( step_sleep )
 
+const test = () => {
+	GPIO.setup(7, GPIO.DIR_OUT)
+	GPIO.write(7,true)
+	console.log(test)
+}
+
+test()
 require('dotenv').config() // dotenv v10 uppsetning á process.env
 
 const {
