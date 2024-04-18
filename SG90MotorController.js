@@ -11,7 +11,7 @@ class SG90MotorController {
         this._gpioPin = gpioPin;
         this._gpioController = null;
         this._motorPin = null;
-        this._ticksPerMilliSecond = Math.floor(1000 / performance.now());
+        this._ticksPerMilliSecond = Math.floor(1000 / Date.now());
 
         this.gpioInitialized = false;
 
@@ -53,8 +53,8 @@ class SG90MotorController {
 
     // Function to wait for a specific number of milliseconds
     millisecondToWait(millisecondsToWait) {
-        const startTime = performance.now();
-        while (performance.now() - startTime < millisecondsToWait) {
+        const startTime = Date.now();
+        while (Date.now() - startTime < millisecondsToWait) {
             // Do nothing, just wait
         }
     }
