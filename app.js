@@ -8,6 +8,7 @@ const bodyParse = require('body-parser');
 const { error } = require('console');
 // var gpio = require('rpi-gpio');
 const GPIO = require('rpi-gpio').promise;
+// GPIO.destroy()
 /**
  * TAKEN FROM RPI-GPIO NODEJS DOCUMENTATION
  * https://www.npmjs.com/package/rpi-gpio?activeTab=code
@@ -68,7 +69,7 @@ const step_sequence = [[1,0,0,1],
 //         time.sleep( step_sleep )
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 const stepperPins = [7,11,13,15]
-const dcPins = [18,22]
+const servoPin = 22
 const test = async () => {
 	let i = 0
 	for (const pin of stepperPins) {
@@ -88,24 +89,27 @@ const test = async () => {
     i++ }
 }
 
-const test2 = async () => {
+const test2 = async (hz) => {
+	await GPIO.destroy()
+	const on = 20/hz;
+	const off = 20 - on;
+    await sleep(100);
 	let i = 1;
-	for (const pin of dcPins) {
-		await GPIO.setup(pin, GPIO.DIR_OUT).catch(err => console.error(err))
-	}
+		await GPIO.setup(servoPin, GPIO.DIR_OUT).catch(err => console.error(err))
 	while (i) {
-			await GPIO.write(dcPins[0], true).catch(err => console.error(err))
-			await sleep(500);
-			await GPIO.write(dcPins[0], false).catch(err => console.error(err))
-			await GPIO.write(dcPins[1], true).catch(err => console.error(err))
-			await sleep(500);
-			await GPIO.write(dcPins[1], false).catch(err => console.error(err))
-			console.log(i)
+			await GPIO.write(servoPin, true).catch(err => console.error(err))
+			await sleep(on);
+			await GPIO.write(servoPin, false).catch(err => console.error(err))
+			// await GPIO.write(dcPins[1], true).catch(err => console.error(err))
+			await sleep(off);
+			// await GPIO.write(dcPins[1], false).catch(err => console.error(err))
+	//		console.log(i)
 			i++
 		}
 }
 
-test2()
+test2(10)
+
 
 
 // test()
