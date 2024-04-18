@@ -91,7 +91,7 @@ const test = async () => {
 }
 
 const testcc = async () => {
-	const servo = new pigpio(7, {mode: pigpio.OUTPUT});
+	const servo = new pigpio(4, {mode: pigpio.OUTPUT});
 	let i = 1
 	while (i) {
 		servo.servoWrite(500);
