@@ -66,9 +66,11 @@ const step_sequence = [[1,0,0,1],
 //             cleanup()
 //             exit( 1 )
 //         time.sleep( step_sleep )
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 const stepperPins = [7,11,13,15]
 const test = async () => {
 	let i = 0
+
         while (true) {
         let n = 0;
 
@@ -83,6 +85,7 @@ const test = async () => {
 		console.log(i,n)
 		n++
 	}
+                await sleep(2);
     i++ }
 }
 
