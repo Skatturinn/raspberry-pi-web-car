@@ -67,19 +67,17 @@ const step_sequence = [[1,0,0,1],
 //         time.sleep( step_sleep )
 const stepperPins = [7,11,13,15]
 const test = async () => {
-	while (true) {
 	let n = 0;
 	for (const pin of stepperPins) {
 		await GPIO.setup(pin, GPIO.DIR_OUT)
 	}
 	while (n < 8) {
-		for (const pin of stepperPins) {
-			await GPIO.write(pin, !!step_sequence[n][pin])
-		}
+		await stepperPins.forEach(async (stak,nr) => 
+		{await GPIO.write(stak, !!step_sequence[n][nr])}
+	)
 		console.log(n)
 		n++
 	}
-	console.log('one rotation') }
 }
 // while (true) {}
 test()
