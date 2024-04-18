@@ -97,7 +97,7 @@ const testcc = async () => {
         let n = 0;
 	// const promises = [];
 	while (n < 8) {
-		await GPIO.write(servoPin, !!step_sequence[n][2]).catch(err => console.log(err))
+		await GPIO.write(servoPin, true).catch(err => console.log(err))
 		console.log(i,n)
 		n++
 	}
