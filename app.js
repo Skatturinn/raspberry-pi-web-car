@@ -135,7 +135,7 @@ const RotateServer = {
 };
 
 // Create an instance of SG90MotorController, specifying the GPIO pin number
-const motorController = new SG90MotorController(22); // Assuming GPIO pin 5
+const motorController = new SG90MotorController(25); // Assuming GPIO pin 5
 
 // Initialize GPIO
 motorController.gpioInit().then(() => {

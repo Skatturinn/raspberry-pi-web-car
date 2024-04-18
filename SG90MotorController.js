@@ -7,7 +7,7 @@ const RotateServer = {
 
 // Class for controlling an SG90 Motor
 class SG90MotorController {
-    constructor(gpioPin = 22) {
+    constructor(gpioPin = 25) {
         this._gpioPin = gpioPin;
         this._gpioController = null;
         this._motorPin = null;
