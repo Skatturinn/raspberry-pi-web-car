@@ -6,7 +6,7 @@ const { fileURLToPath } = require('url');
 const session = require('express-session');
 const bodyParse = require('body-parser')
 // var gpio = require('rpi-gpio');
-const GPIO = require('rpi-gpio');
+const GPIO = require('rpi-gpio').promise;
 /**
  * TAKEN FROM RPI-GPIO NODEJS DOCUMENTATION
  * https://www.npmjs.com/package/rpi-gpio?activeTab=code
@@ -67,9 +67,23 @@ const step_sequence = [[1,0,0,1],
 //         time.sleep( step_sleep )
 
 const test = () => {
-	GPIO.setup(7, GPIO.DIR_OUT)
-	GPIO.write(7,true)
-	console.log(test)
+	GPIO.setup(7, GPIO.DIR_OUT).then(
+            () => 
+	GPIO.write(7,true))
+
+            .catch((err)=> console.log(err.toString()));
+    GPIO.setup(11, GPIO.DIR_OUT).then(
+            () => 
+            GPIO.write(11,true))
+        GPIO.setup(13, GPIO.DIR_OUT).then(
+                () => 
+                GPIO.write(13, true))
+        GPIO.setup(15, GPIO.DIR_OUT).then(
+                () =>
+                GPIO.write(15, true))
+
+	console.log('test')
+
 }
 
 test()
