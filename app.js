@@ -71,6 +71,20 @@ const step_sequence = [[1,0,0,1],
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 const stepperPins = [7,11,13,15]
 
+const kl2test = async () => {
+	for (const pin of stepperPins) {
+		await GPIO.setup(pin, GPIO.DIR_OUT).catch(err => console.error(err))
+		{await GPIO.write(pin, true).catch(err => console.log(err))}
+
+	}
+
+	{await GPIO.write(15, false).catch(err => console.log(err))}
+
+
+}
+kl2test()
+
+
 const servoPin = 22
 const test = async () => {
 	let i = 0
@@ -91,11 +105,10 @@ const test = async () => {
     // i++ 
 }
 }
-test()
 
 const t = async () => {
 	await GPIO.setup(7, GPIO.DIR_OUT).catch(err => console.error(err))
-	await GPIO.write(6, true)
+	await GPIO.write
 }
 
 const testcc = async () => {
