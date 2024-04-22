@@ -70,26 +70,26 @@ const step_sequence = [[1,0,0,1],
 //         time.sleep( step_sleep )
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 const stepperPins = [24,22,18,16]
-// for (const pin of stepperPins) {
-// 	GPIO.setup(pin, GPIO.DIR_OUT).catch(err => console.error(err))
-// }
+
 const servoPin = 22
 const test = async () => {
 	let i = 0
 	for (const pin of stepperPins) {
 		await GPIO.setup(pin, GPIO.DIR_OUT).catch(err => console.error(err))
 	}
-	while (true) {
+        while (true) {
+        let n = 0;
+	// const promises = [];
+	while (n < 8) {
 		stepperPins.forEach(async (stak,nr) => 
 		{await GPIO.write(stak, !!step_sequence[n][nr]).catch(err => console.log(err))}
 	)
-		console.log(i)
-		i++
+		console.log(i,n)
+		n++
+	}
 		await sleep(2);
-
-	}}
-
-test()
+    i++ }
+}
 
 const testcc = async () => {
 	const servo = new pigpio(4, {mode: pigpio.OUTPUT});
@@ -180,10 +180,7 @@ app.use(
 // app.use(passport.session())
 // TODO stuðningur við villur
 // app.locals = {isInvalid} skoða vef2-2022-v2 á skatturing github
-let w = false;
-let a = false;
-let s = false;
-let d = false;
+
 
 /** Gerum router hér */
 const router = express.Router();
@@ -199,28 +196,21 @@ router.post('/takki', (req, res) => { // sendir boð
 	 * @param {undefined | string} ekki
 	 * @returns {boolean}
 	 */
-	w = req.body.w || w;
-	a = req.body.a || a;
-	s = req.body.s || s;
-	d = req.body.d || d;
-	console.log(w,a,s,d)
+	const {w, a, s ,d } = req.body
+	// console.log(w,a,s,d)
 	function check(til,ekki) {
-		return typeof til == 'undefined' && typeof ekki === 'undefined'
+		return typeof til !== 'undefined' && typeof ekki === 'undefined'
 	}
 		// TODO gera viðbrögð fyrir takka w,a,s,d
         // console.log(req.body.w,req.body.a,req.body.d,req.body.s);
 		// Servo motor for propulsion
-
-			if (w && !s) {
-			}
+		if (check(w,s)) {
 			
 			// Snúa motor áfram
-		
+		} 
 		if (check(s,w)) {
-				stepperPins.forEach(async (stak,nr) => 
-				{await GPIO.write(stak, !!step_sequence.reverse()[n][nr]).catch(err => console.log(err))})
-			}
 			// Snúa motor afturábak
+		}
 		// Stepper motor for turning
 		if (check(a,d)) {
 			// beygja til vinstri
