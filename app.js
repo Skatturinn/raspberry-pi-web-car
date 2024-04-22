@@ -77,7 +77,7 @@ const servoPin = 22
 const test = async () => {
 	let i = 0
 	// const promises = [];
-	while (n < 8) {
+	while (true) {
 		stepperPins.forEach(async (stak,nr) => 
 		{await GPIO.write(stak, !!step_sequence[n][nr]).catch(err => console.log(err))}
 	)
@@ -201,24 +201,22 @@ router.post('/takki', (req, res) => { // sendir boð
         // console.log(req.body.w,req.body.a,req.body.d,req.body.s);
 		// Servo motor for propulsion
 
-			while (check(w,s)) {
-				stepperPins.forEach(async (stak,nr) => 
-				{await GPIO.write(stak, !!step_sequence[n][nr]).catch(err => console.log(err))}
-			)
+			if (check(w,s)) {
+				test()
 			}
 			
 			// Snúa motor áfram
 		
-		while (check(s,w)) {
+		if (check(s,w)) {
 				stepperPins.forEach(async (stak,nr) => 
 				{await GPIO.write(stak, !!step_sequence.reverse()[n][nr]).catch(err => console.log(err))})
 			}
 			// Snúa motor afturábak
 		// Stepper motor for turning
-		while (check(a,d)) {
+		if (check(a,d)) {
 			// beygja til vinstri
 		}
-		while (check(d,a)) {
+		if (check(d,a)) {
 			// beygja til hægri
 		}
 		console.log(req.body)
