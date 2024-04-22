@@ -193,35 +193,32 @@ router.post('/takki', (req, res) => { // sendir boð
 	 * @returns {boolean}
 	 */
 	const {w, a, s ,d } = req.body
-	// console.log(w,a,s,d)
+	console.log(w,a,s,d)
 	function check(til,ekki) {
 		return typeof til !== 'undefined' && typeof ekki === 'undefined'
 	}
 		// TODO gera viðbrögð fyrir takka w,a,s,d
         // console.log(req.body.w,req.body.a,req.body.d,req.body.s);
 		// Servo motor for propulsion
-		if (check(w,s)) {
-			while (w) {
+
+			while (check(w,s)) {
 				stepperPins.forEach(async (stak,nr) => 
 				{await GPIO.write(stak, !!step_sequence[n][nr]).catch(err => console.log(err))}
 			)
 			}
 			
 			// Snúa motor áfram
-		} 
-		if (check(s,w)) {
-			while (s) {
+		
+		while (check(s,w)) {
 				stepperPins.forEach(async (stak,nr) => 
-				{await GPIO.write(stak, !!step_sequence.reverse()[n][nr]).catch(err => console.log(err))}
-			)
+				{await GPIO.write(stak, !!step_sequence.reverse()[n][nr]).catch(err => console.log(err))})
 			}
 			// Snúa motor afturábak
-		}
 		// Stepper motor for turning
-		if (check(a,d)) {
+		while (check(a,d)) {
 			// beygja til vinstri
 		}
-		if (check(d,a)) {
+		while (check(d,a)) {
 			// beygja til hægri
 		}
 		console.log(req.body)
