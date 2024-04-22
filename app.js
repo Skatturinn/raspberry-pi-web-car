@@ -70,14 +70,12 @@ const step_sequence = [[1,0,0,1],
 //         time.sleep( step_sleep )
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 const stepperPins = [7,11,13,15]
+for (const pin of stepperPins) {
+	await GPIO.setup(pin, GPIO.DIR_OUT).catch(err => console.error(err))
+}
 const servoPin = 22
 const test = async () => {
 	let i = 0
-	for (const pin of stepperPins) {
-		await GPIO.setup(pin, GPIO.DIR_OUT).catch(err => console.error(err))
-	}
-        while (true) {
-        let n = 0;
 	// const promises = [];
 	while (n < 8) {
 		stepperPins.forEach(async (stak,nr) => 
@@ -102,7 +100,7 @@ const testcc = async () => {
 	}
 }
 
-testcc()
+// testcc()
 
 const test2 = async (hz) => {
 	await GPIO.destroy()
@@ -204,9 +202,20 @@ router.post('/takki', (req, res) => { // sendir boð
         // console.log(req.body.w,req.body.a,req.body.d,req.body.s);
 		// Servo motor for propulsion
 		if (check(w,s)) {
+			while (w) {
+				stepperPins.forEach(async (stak,nr) => 
+				{await GPIO.write(stak, !!step_sequence[n][nr]).catch(err => console.log(err))}
+			)
+			}
+			
 			// Snúa motor áfram
 		} 
 		if (check(s,w)) {
+			while (s) {
+				stepperPins.forEach(async (stak,nr) => 
+				{await GPIO.write(stak, !!step_sequence.reverse()[n][nr]).catch(err => console.log(err))}
+			)
+			}
 			// Snúa motor afturábak
 		}
 		// Stepper motor for turning
