@@ -69,7 +69,7 @@ const step_sequence = [[1,0,0,1],
 //             exit( 1 )
 //         time.sleep( step_sleep )
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
-const stepperPins = [24,22,18,16]
+const stepperPins = [7,11,13,15]
 
 const servoPin = 22
 const test = async () => {
@@ -90,9 +90,6 @@ const test = async () => {
 		await sleep(2);
     i++ }
 }
-
-
-test()
 
 const testcc = async () => {
 	const servo = new pigpio(4, {mode: pigpio.OUTPUT});
