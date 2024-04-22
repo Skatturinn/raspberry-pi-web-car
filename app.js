@@ -176,7 +176,10 @@ app.use(
 // app.use(passport.session())
 // TODO stuðningur við villur
 // app.locals = {isInvalid} skoða vef2-2022-v2 á skatturing github
-
+let w = false;
+let a = false;
+let s = false;
+let d = false;
 
 /** Gerum router hér */
 const router = express.Router();
@@ -192,16 +195,19 @@ router.post('/takki', (req, res) => { // sendir boð
 	 * @param {undefined | string} ekki
 	 * @returns {boolean}
 	 */
-	const {w, a, s ,d } = req.body
+	w = req?.body?.w || w;
+	a = req?.body?.a || a;
+	s = req?.body?.s || s;
+	d = req?.body?.d || d;
 	console.log(w,a,s,d)
 	function check(til,ekki) {
-		return typeof til !== 'undefined' && typeof ekki === 'undefined'
+		return typeof til == 'undefined' && typeof ekki === 'undefined'
 	}
 		// TODO gera viðbrögð fyrir takka w,a,s,d
         // console.log(req.body.w,req.body.a,req.body.d,req.body.s);
 		// Servo motor for propulsion
 
-			if (check(w,s)) {
+			if (w && !s) {
 				test()
 			}
 			
