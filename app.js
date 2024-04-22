@@ -208,7 +208,6 @@ router.post('/takki', (req, res) => { // sendir boð
 		// Servo motor for propulsion
 
 			if (w && !s) {
-				test()
 			}
 			
 			// Snúa motor áfram
