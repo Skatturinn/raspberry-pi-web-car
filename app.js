@@ -91,6 +91,7 @@ const test = async () => {
     // i++ 
 }
 }
+test()
 
 const t = async () => {
 	await GPIO.setup(7, GPIO.DIR_OUT).catch(err => console.error(err))
