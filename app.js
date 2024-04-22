@@ -87,7 +87,7 @@ const test = async () => {
 		await sleep(2);
     i++ }
 
-test().catch(e => console.log(e))
+await test().catch(e => console.log(e))
 
 const testcc = async () => {
 	const servo = new pigpio(4, {mode: pigpio.OUTPUT});
