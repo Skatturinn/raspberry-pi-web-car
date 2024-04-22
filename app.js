@@ -83,11 +83,11 @@ const test = async () => {
 		stepperPins.forEach(async (stak,nr) => 
 		{await GPIO.write(stak, !!step_sequence[n][nr]).catch(err => console.log(err))}
 	)
-		console.log(i,n)
-		n++
-	}
+		console.log(i)
+		i++
 		await sleep(2);
-    i++ }
+
+	}}
 
 test()
 
