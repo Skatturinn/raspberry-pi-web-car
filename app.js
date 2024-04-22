@@ -70,13 +70,15 @@ const step_sequence = [[1,0,0,1],
 //         time.sleep( step_sleep )
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 const stepperPins = [24,22,18,16]
-for (const pin of stepperPins) {
-	GPIO.setup(pin, GPIO.DIR_OUT).catch(err => console.error(err))
-}
+// for (const pin of stepperPins) {
+// 	GPIO.setup(pin, GPIO.DIR_OUT).catch(err => console.error(err))
+// }
 const servoPin = 22
 const test = async () => {
 	let i = 0
-	// const promises = [];
+	for (const pin of stepperPins) {
+		await GPIO.setup(pin, GPIO.DIR_OUT).catch(err => console.error(err))
+	}
 	while (true) {
 		stepperPins.forEach(async (stak,nr) => 
 		{await GPIO.write(stak, !!step_sequence[n][nr]).catch(err => console.log(err))}
@@ -87,7 +89,7 @@ const test = async () => {
 		await sleep(2);
     i++ }
 
-await test().catch(e => console.log(e))
+test()
 
 const testcc = async () => {
 	const servo = new pigpio(4, {mode: pigpio.OUTPUT});
