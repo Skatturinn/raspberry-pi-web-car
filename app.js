@@ -87,6 +87,8 @@ const test = async () => {
 		await sleep(2);
     i++ }
 
+test()
+
 const testcc = async () => {
 	const servo = new pigpio(4, {mode: pigpio.OUTPUT});
 	let i = 1
