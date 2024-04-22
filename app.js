@@ -195,10 +195,10 @@ router.post('/takki', (req, res) => { // sendir boð
 	 * @param {undefined | string} ekki
 	 * @returns {boolean}
 	 */
-	w = req?.body?.w || w;
-	a = req?.body?.a || a;
-	s = req?.body?.s || s;
-	d = req?.body?.d || d;
+	w = req.body.w || w;
+	a = req.body.a || a;
+	s = req.body.s || s;
+	d = req.body.d || d;
 	console.log(w,a,s,d)
 	function check(til,ekki) {
 		return typeof til == 'undefined' && typeof ekki === 'undefined'
