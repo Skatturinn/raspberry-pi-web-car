@@ -85,12 +85,18 @@ const test = async () => {
 		{await GPIO.write(stak, !!step_sequence[n][nr]).catch(err => console.log(err))}
 	)
 		console.log(i,n)
-		n++
+		// n++
 	}
 		await sleep(2);
-    i++ }
+    // i++ 
 }
-test()
+}
+
+const t = async () => {
+	await GPIO.setup(7, GPIO.DIR_OUT).catch(err => console.error(err))
+	await GPIO.write(6, true)
+}
+
 const testcc = async () => {
 	const servo = new pigpio(4, {mode: pigpio.OUTPUT});
 	let i = 1
@@ -140,7 +146,8 @@ let increment = 100;
 		  increment = 100;
 		}
 	  }, 1000);
-}
+
+	}
 
 // test()
 require('dotenv').config() // dotenv v10 uppsetning á process.env
