@@ -42,6 +42,10 @@ Bíllinn er hannaður með hleðslubankann, steppermótor og servomótor í huga
 3d prentun.
 
 
+![bill](/bill1)
+![bill2](/bill2)
+
+
 22. Apríl 
 Reynt er að tengja stýrimerki frá vefsíðu að mótor í gegnum hotspot frá síma. Öxlar og tannhjól eru pússuð til. Bíllinn er að lokum settur saman. Bíllinn var kynntur en náði því miður ekki að keyra. Allt annað var klárt, en það sem vantaði var að ná að snúa mótornum í gegnum vefsíðu.
 
