@@ -6,9 +6,10 @@ Uppsetning á sd korti fyrir raspberry pi með node.js og git stuðningi. Repost
 
 10. Apríl
 Byrjað var á notendaviðmótinu þannig að vefsíðan geti lesið innslátt á stýringu eftir því hvort noteandi ýti á w, a, s eða d. Serverinn var síðan settur upp. Hann var hluti af bakendum. Hlutverk hans er að taka á móti  upplýsingum framendans þ.e. Á hvaða takka notandinn ýtir á.
+![mynd af sidu]{'/myndafsidu.jpg'}
 
 
-11. Apríl
+12. Apríl
 Það sem gerist í framendanum er sent á bakendann. Útbúin er mynd sem birtist á vefsíðu og stilling samræmir það sem notandinn slær á lyklaborð og virkni síðunnar. Stór mynd sem birtist á vefsíðu með fyrrgreindum hnöppum birtist notanda. Notendaviðmótið var einnig gert skalanlegt.
 
 Mynd af bakenda að skila inputum á vefsíðu, hvaða takki er haldið inni
