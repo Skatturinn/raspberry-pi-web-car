@@ -42,8 +42,8 @@ Bíllinn er hannaður með hleðslubankann, steppermótor og servomótor í huga
 3d prentun.
 
 
-![bill](/bill1)
-![bill2](/bill2)
+![bill](/bill1.jpg)
+![bill2](/bill2.jpg)
 
 
 22. Apríl 
