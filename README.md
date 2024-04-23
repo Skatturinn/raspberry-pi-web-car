@@ -38,7 +38,9 @@ Byrjað var á því að reyna að stýra stepper-mótor. Eftir 6 tilraunir teks
 19. Apríl
 Bíllinn er hannaður með hleðslubankann, steppermótor og servomótor í huga. Hann er teiknaður í solidworks.
 
-20. Apríl 
+![bill3](/bill3.jpg)
+
+21. Apríl 
 3d prentun.
 
 
