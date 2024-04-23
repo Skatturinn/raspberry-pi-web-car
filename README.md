@@ -1,10 +1,10 @@
-19. mars 
+## 19. mars 
 Skilgreindum við verkefnið. Hugmyndin var að útbúa fjarstýrðan bíl. Honum er stjórnað í gegnum vefsíðu. Notandi getur stýrt honum með w, a, s og d.
 
-9. Apríl 
+## 9. Apríl 
 Uppsetning á sd korti fyrir raspberry pi með node.js og git stuðningi. Repostofnað og tengt við skjal á raspberry pi. Þá er hægt að skrifa kóðan á heimatölvu í stað þess að opna hann i gegnum terminal í ssh tenginu við raspberry
 
-10. Apríl
+##10. Apríl
 Byrjað var á notendaviðmótinu þannig að vefsíðan geti lesið innslátt á stýringu eftir því hvort noteandi ýti á w, a, s eða d. Serverinn var síðan settur upp. Hann var hluti af bakendum. Hlutverk hans er að taka á móti  upplýsingum framendans þ.e. Á hvaða takka notandinn ýtir á.
 
 
